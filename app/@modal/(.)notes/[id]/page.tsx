@@ -1,5 +1,5 @@
 import ModalRoute from "@/components/ModalRoute/ModalRoute";
-import NotePreview from "@/components/NotePreview/NotePreview";
+import NotePreview from "@/app/@modal/(.)notes/[id]/NotePreview";
 
 export default function ModalNote() {
   return (
