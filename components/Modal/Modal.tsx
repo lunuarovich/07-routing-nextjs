@@ -3,7 +3,7 @@
 import { ReactNode, useEffect } from "react";
 import { createPortal } from "react-dom";
 
-import styles from "./Modal.module.css";
+import css from "./Modal.module.css";
 
 interface ModalProps {
   children: ReactNode;
@@ -29,14 +29,14 @@ export default function Modal({ children, onClose }: ModalProps) {
 
   return createPortal(
     <div
-      className={styles.backdrop}
+      className={css.backdrop}
       onClick={(e) => {
         if (e.target === e.currentTarget) {
           onClose();
         }
       }}
     >
-      <div className={styles.modal}>{children}</div>
+      <div className={css.modal}>{children}</div>
     </div>,
     document.body
   );

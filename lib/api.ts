@@ -11,10 +11,11 @@ const api = axios.create({
 
 export const fetchNotes = async (
   page: number,
-  search: string
+  search: string,
+  tag?: string
 ): Promise<NotesResponse> => {
   const { data } = await api.get<NotesResponse>("/notes", {
-    params: { page, search },
+    params: { page, search, tag },
   });
   return data;
 };

@@ -7,7 +7,7 @@ import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { createNote } from "@/lib/api";
 import { Note } from "@/types/note";
 
-import styles from "./NoteForm.module.css";
+import css from "./NoteForm.module.css";
 
 interface NoteFormProps {
   onClose: () => void;
@@ -73,26 +73,26 @@ export default function NoteForm({ onClose }: NoteFormProps) {
         mutation.mutate(payload);
       }}
     >
-      <Form className={styles.form}>
-        <div className={styles.formGroup}>
+      <Form className={css.form}>
+        <div className={css.formGroup}>
           <label>Title</label>
-          <Field name="title" className={styles.input} />
-          <ErrorMessage name="title" component="p" className={styles.error} />
+          <Field name="title" className={css.input} />
+          <ErrorMessage name="title" component="p" className={css.error} />
         </div>
 
-        <div className={styles.formGroup}>
+        <div className={css.formGroup}>
           <label>Content</label>
-          <Field as="textarea" name="content" className={styles.textarea} />
+          <Field as="textarea" name="content" className={css.textarea} />
           <ErrorMessage
             name="content"
             component="p"
-            className={styles.error}
+            className={css.error}
           />
         </div>
 
-        <div className={styles.formGroup}>
+        <div className={css.formGroup}>
           <label>Tag</label>
-          <Field as="select" name="tag" className={styles.select}>
+          <Field as="select" name="tag" className={css.select}>
             <option value="">Select tag</option>
             {TAG_OPTIONS.map((t) => (
               <option key={t} value={t}>
@@ -100,13 +100,13 @@ export default function NoteForm({ onClose }: NoteFormProps) {
               </option>
             ))}
           </Field>
-          <ErrorMessage name="tag" component="p" className={styles.error} />
+          <ErrorMessage name="tag" component="p" className={css.error} />
         </div>
 
-        <div className={styles.actions}>
+        <div className={css.actions}>
           <button
             type="submit"
-            className={styles.submitButton}
+            className={css.submitButton}
             disabled={mutation.isPending}
           >
             {mutation.isPending ? "Creating..." : "Create note"}
@@ -114,7 +114,7 @@ export default function NoteForm({ onClose }: NoteFormProps) {
 
           <button
             type="button"
-            className={styles.cancelButton}
+            className={css.cancelButton}
             onClick={onClose}
           >
             Cancel

@@ -13,23 +13,23 @@ import Pagination from "@/components/Pagination/Pagination";
 import Modal from "@/components/Modal/Modal";
 import NoteForm from "@/components/NoteForm/NoteForm";
 
-import styles from "./NotesPage.module.css";
+import css from "./NotesPage.module.css";
 
-export default function NotesClient() {
-  const [page, setPage] = useState<number>(1);
-  const [search, setSearch] = useState<string>("");
+export default function NotesClient({ tag }: { tag?: string }) {
+  const [page, setPage] = useState<number>(() => 1);
+  const [search, setSearch] = useState<string>(() => "");
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
 
   const [debouncedSearch] = useDebounce(search, 500);
 
   const handleSearch = (value: string) => {
-  setSearch(value);
-  setPage(1);
-};
+    setSearch(value);
+    setPage(1);
+  };
 
   const { data, isLoading, isError } = useQuery<NotesResponse>({
-    queryKey: ["notes", page, debouncedSearch],
-    queryFn: () => fetchNotes(page, debouncedSearch),
+    queryKey: ["notes", page, debouncedSearch, tag ?? ""],
+    queryFn: () => fetchNotes(page, debouncedSearch, tag),
     placeholderData: (previousData) => previousData,
   });
 
@@ -37,12 +37,12 @@ export default function NotesClient() {
   if (isError || !data) return <p>Something went wrong.</p>;
 
   return (
-    <main className={styles.app}>
-      <div className={styles.toolbar}>
+    <main className={css.app}>
+      <div className={css.toolbar}>
         <SearchBox onSearch={handleSearch} />
         <button
           type="button"
-          className={styles.button}
+          className={css.button}
           onClick={() => setIsModalOpen(true)}
         >
           Create note
