@@ -4,6 +4,15 @@ import Header from "@/components/Header/Header";
 import Footer from "@/components/Footer/Footer";
 import TanStackProvider from "@/components/TanStackProvider/TanStackProvider";
 import type { ReactNode } from "react";
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: {
+    default: "NoteHub",
+    template: "%s | NoteHub",
+  },
+  description: "NoteHub — simple notes manager built with Next.js",
+};
 
 export default function RootLayout({
   children,
