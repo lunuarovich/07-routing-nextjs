@@ -4,13 +4,15 @@ import { HydrationBoundary } from "@tanstack/react-query";
 import { fetchNotes } from "@/lib/api";
 import NotesClient from "./Notes.client";
 
-export default async function NotesByTagPage({
+export default async function NotesBySlugPage({
   params,
 }: {
-  params: { tag?: string[] };
+  params: Promise<{ slug: string[] }>;
 }) {
-  const slug = params.tag?.[0] ?? "all";
-  const tag = slug === "all" ? undefined : slug;
+  const { slug } = await params;
+
+  const first = slug?.[0] ?? "all";
+  const tag = first === "all" ? undefined : first;
 
   const queryClient = new QueryClient();
 

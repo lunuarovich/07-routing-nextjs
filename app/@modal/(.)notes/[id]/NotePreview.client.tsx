@@ -1,5 +1,7 @@
 "use client";
 
+import Modal from "@/components/Modal/Modal";
+
 import { useRouter, useParams } from "next/navigation";
 import { useQuery } from "@tanstack/react-query";
 
@@ -20,8 +22,12 @@ export default function NotePreview() {
   if (error || !data) return <p>Something went wrong.</p>;
 
   return (
-    <div className={css.container}>
-      <button type="button" className={css.backBtn} onClick={() => router.back()}>
+    <Modal onClose={() => router.back()}>
+      <button
+        type="button"
+        className={css.backBtn}
+        onClick={() => router.back()}
+      >
         Back
       </button>
 
@@ -34,6 +40,6 @@ export default function NotePreview() {
         <p className={css.content}>{data.content}</p>
         <p className={css.date}>{data.createdAt}</p>
       </div>
-    </div>
+    </Modal>
   );
 }
