@@ -3,10 +3,12 @@ import css from "./Home.module.css";
 export default function NotFound() {
   return (
     <main>
+      <div className={css.container}>
       <h1 className={css.title}>404 - Page not found</h1>
-      <p className={css.description}>
+      <p className={`${css.description} ${css.notFound}`}>
         Sorry, the page you are looking for does not exist.
-      </p>
+        </p>
+        </div>
     </main>
   );
 }
